@@ -1,14 +1,33 @@
-(ns mygit.core)
-  ;; (:require [clojure.string :as str]
-  ;;           [cljs.tools.cli :refer [parse-opts]]))
+(ns mygit.core
+  (:require [cljs.nodejs :as node]))
+   ;;          [clojure.core.async]
+   ;;          [cljs-asynchronize])
+   ;; (:require-macros [cljs-asynchronize.macros :as dm :refer [asynchronize]]
+;;                  [cljs.core.async.macros :as am :refer [go]]))
 
-(def git (js/require "simple-git"))
+(node/enable-util-print!)
 
-(defn tags []
-  (println (.-tags git)))
+(defonce gitlatest (node/require "git-latest-semver-tag"))
+(println "gitlatest: " gitlatest)
+(defn doit []
+  (println "Doing it")
+  (js->clj (gitlatest (fn [err,tag] (println "tags: " tag)))))
 
 (defn -main []
-  (tags))
+  (doit))
+
+;; (def git (node/require "simple-git" "."))
+;; (println "git: " git)
+
+;; (defn ^:export mycallback [err, tgs]
+;;   (println "TAGS: " tgs))
+
+;; (defn tags [cb]
+;;    (def result (. git tags (fn [err, tgs] (println "Yay; " tgs) )))
+;;    (println "FOO: " result))
+
+;; (defn -main []
+;;   (tags mycallback))
 
 
 
