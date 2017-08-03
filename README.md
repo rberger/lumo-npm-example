@@ -76,8 +76,8 @@ asynchronous results back into the main program thread.
 Of course you need to:
 
 ```shell
-git clone git@github.com:rberger/lumo-npm-clojurescript-example.git
-cd lumo-npm-clojurescript-example
+git clone git@github.com:rberger/lumo-npm-example.git
+cd lumo-npm-example
 ```
 
 #### Install the NPM dependencies in your local repo
@@ -113,7 +113,7 @@ lein deps
 To execute the program:
 
 ```shell
-lumo -K -D andare:0.7.0 -c src -m lumo-npm-clojurescript-example.core
+lumo -K -D andare:0.7.0 -c src -m lumo-npm-example.core
 ```
 
 * `-K` will cache any dependencies in `.lumo_cache` This will speed up running
@@ -121,7 +121,7 @@ the command after the first time.
 * `-D andare:0.7.0` tells `lumo` to pull in the dependency `andre:0.7.0` from
   your local maven repo (`~/.m2`)
 * `-c  src` specifies the classpath for the `lumo` run
-* `-m lumo-npm-clojurescript-example.core` Call the -main function `lumo-npm-clojurescript-example.core`
+* `-m lumo-npm-example.core` Call the -main function `lumo-npm-example.core`
 
 Assuming that there are the tags `1.0.0`, `foo`, `bar` in the current repo, you should see:
 
