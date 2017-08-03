@@ -164,6 +164,7 @@ project in a fresh new directory/repo you would have to:
   * The `--save` makes it install them locally to the current directory in
     `npm_modules` and updates the `package.json`
 * To make your repo into a deployable npm package itself
+  * __Making the npm package Doesn't quite work yet in terms of running the executable__
   * Include lumo-cljs in the package.json under `"dependencies"` as is done in this repo
   * Have some kind of `bin/<executable>`
     * Have an entry in package.json under `"scripts"` similar to how its done in this repo
