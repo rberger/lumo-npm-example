@@ -1,4 +1,4 @@
-(ns mygit.core
+(ns lumo-npm-clojurescript-example.core
   ;; Need the following so we can use core.async to get the callback data back
   ;; into the main program
   (:require [cljs.core.async :as async])

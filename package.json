@@ -1,12 +1,12 @@
 {
-  "name": "mygit",
-  "version": "1.0.0",
-  "description": "Testing cljs and git and lumo",
+  "name": "lumo-npm-clojurescript-example",
+  "version": "0.1.0",
+  "description": "Example How to Call Non-Trivial NPM Libraries in lumo / clojurescript",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Robert J. Berger",
   "license": "ISC",
   "dependencies": {
     "git-latest-semver-tag": "^1.0.2",

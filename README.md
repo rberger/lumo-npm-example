@@ -1,10 +1,10 @@
-# Example How to Call Non-Trivial NPM Libraries in  lumo / clojurescript
+## Example How to Call Non-Trivial NPM Libraries in  lumo / clojurescript
 
 Example of how to call a couple of NPM Libraries with different sets of function
 signatures from (Clojurescript)[https://clojurescript.org/] in a
 (Lumo)[https://github.com/anmonteiro/lumo] program.
 
-## NPM Libraries Used
+### NPM Libraries Used
 
 The two npm libraries are:
 
@@ -70,14 +70,63 @@ return results. This is great for web apps, but generally a bummer for writing
 scripts. The example program (`src/core.cljs`) uses core-async to get the
 asynchronous results back into the main program thread.
 
-## Setting Up
+### Setting Up
 
+#### Clone the Repo 
 Of course you need to:
 
+```shell
+git clone git@github.com:rberger/lumo-npm-clojurescript-example.git
+cd lumo-npm-clojurescript-example
 ```
-git clone 
+
+#### Install the NPM dependencies in your local repo
+
+```shell
+npm install
 ```
-To get the NPM libraries into the repo so they are able to be `require`d, you need to do the following:
+
+This will pull the npm libraries and dependencies into `node_modules`
+
+#### Install Clojure / Clojurescript dependencies
+
+We need to use the customized version of clojure/core.async called
+(andare)[https://github.com/mfikes/andare] that works with bootstrapped
+ClojureScript environments like (lumo)[https://github.com/anmonteiro/lumo].
+
+The easiest way is to get andare into your local maven repo. The easiest way I
+know to do that is to have a `project.clj` and use `lein deps` to get it and any
+potential dependencies. This technique will work for any clojure or
+clojurescript dependencies you may need in your lumo scripts.
+
+This repo has a `project.clj` that is only used for getting these dependencies.
+It is not used by lumo itself.
+
+So you should run:
+
+```shell
+lein deps
+```
+
+#### Executing the program
+
+To execute the program:
+
+```shell
+lumo -K -D andare:0.7.0 -c src -m lumo-npm-clojurescript-example.core
+```
+
+* `-K` will cache any dependencies in `.lumo_cache` This will speed up running
+the command after the first time.
+* `-D andare:0.7.0` tells `lumo` to pull in the dependency `andre:0.7.0` from
+  your local maven repo (`~/.m2`)
+* `-c  src` specifies the classpath for the `lumo` run
+* `-m `
+
+If you use the repo you don't need to do the following since the `package.json`
+already exists but if you were doing this from scratch you would have to:
+
+* To get the NPM libraries into the repo so they are able to be `require`d, you need to do the following:
 
 
 
