@@ -1,6 +1,6 @@
 {
     "name": "lumo-npm-example",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Example How to Call Non-Trivial NPM Libraries in lumo / clojurescript",
     "main": "index.js",
     "scripts": {
