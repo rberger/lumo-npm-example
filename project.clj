@@ -3,7 +3,8 @@
 ;; repo (usually ~/.m2) as a dependency
 ;;
 ;; Its not used by lumo or the program
-(defproject lumo-npm-clojurescript-example "0.1.0-SNAPSHOT"
+;;
+(defproject lumo-npm-example "0.1.0-SNAPSHOT"
   :description "Testing lumo with npm libraries simple-git and "
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}

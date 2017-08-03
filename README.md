@@ -1,15 +1,15 @@
 ## Example How to Call Non-Trivial NPM Libraries in  lumo / clojurescript
 
 Example of how to call a couple of NPM Libraries with different sets of function
-signatures from (Clojurescript)[https://clojurescript.org/] in a
-(Lumo)[https://github.com/anmonteiro/lumo] program.
+signatures from [Clojurescript](https://clojurescript.org/) in
+a [Lumo](https://github.com/anmonteiro/lumo) program.
 
 ### NPM Libraries Used
 
 The two npm libraries are:
 
-* (git-latest-semver-tag)[https://www.npmjs.com/package/git-latest-semver-tag]
-* (simple-git)[https://www.npmjs.com/package/simple-git]
+* [git-latest-semver-tag](https://www.npmjs.com/package/git-latest-semver-tag)
+* [simple-git](https://www.npmjs.com/package/simple-git)
 
 `git-latest-semver-tag` has a very simple calling signature. It just returns the
 latest tag of the git repot that it is run in. In Javascript:
@@ -91,8 +91,8 @@ This will pull the npm libraries and dependencies into `node_modules`
 #### Install Clojure / Clojurescript dependencies
 
 We need to use the customized version of clojure/core.async called
-(andare)[https://github.com/mfikes/andare] that works with bootstrapped
-ClojureScript environments like (lumo)[https://github.com/anmonteiro/lumo].
+[andare](https://github.com/mfikes/andare) that works with bootstrapped
+ClojureScript environments like [lumo](https://github.com/anmonteiro/lumo).
 
 The easiest way is to get andare into your local maven repo. The easiest way I
 know to do that is to have a `project.clj` and use `lein deps` to get it and any
@@ -121,12 +121,34 @@ the command after the first time.
 * `-D andare:0.7.0` tells `lumo` to pull in the dependency `andre:0.7.0` from
   your local maven repo (`~/.m2`)
 * `-c  src` specifies the classpath for the `lumo` run
-* `-m `
+* `-m lumo-npm-clojurescript-example.core` Call the -main function `lumo-npm-clojurescript-example.core`
+
+Assuming that there are the tags `1.0.0`, `foo`, `bar` in the current repo, you should see:
+
+```
+Simple-Git RESULTS:  [1.0.0 bar foo]
+Git-Latest RESULTS:  1.0.0
+```
+
+### Things to know to do this on your own
 
 If you use the repo you don't need to do the following since the `package.json`
-already exists but if you were doing this from scratch you would have to:
+already exists but if you were doing this from scratch in a fresh new directory/repo you would have to:
 
-* To get the NPM libraries into the repo so they are able to be `require`d, you need to do the following:
-
+* Get the NPM libraries into the repo so they are able to be `require`d, you need to do the following:
+  ```shell
+  npm init
+  ```
+  * You can accept the defaults
+  * This will create an empty package.json
+* Do a local npm install for the npm packages you want to use. To use the two
+  git libraries in this example you would:
+  ```shell
+  npm install git-latest-semver-tag --save
+  npm install simple-git --save
+  ```
+  * The `--save` makes it install them locally to the current directory in
+    `npm_modules` and updates the `package.json`
+    
 
 

@@ -1,4 +1,4 @@
-(ns lumo-npm-clojurescript-example.core
+(ns lumo-npm-example.core
   ;; Need the following so we can use core.async to get the callback data back
   ;; into the main program
   (:require [cljs.core.async :as async])
