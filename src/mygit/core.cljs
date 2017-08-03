@@ -1,34 +1,26 @@
 (ns mygit.core
-  (:require [cljs.nodejs :as node]))
-   ;;          [clojure.core.async]
-   ;;          [cljs-asynchronize])
-   ;; (:require-macros [cljs-asynchronize.macros :as dm :refer [asynchronize]]
-;;                  [cljs.core.async.macros :as am :refer [go]]))
+  (:require [cljs.core.async :as async])
+  (:require-macros [cljs.core.async.macros :as async-macros]))
 
-(node/enable-util-print!)
+(def git ((js/require "simple-git"))) ;; The double parens around the js/require is needed!
+(def res-chan (async/chan))
+(defn get-tags []
+  (.tags git  (fn [err, tgs] (async-macros/go (async/>! res-chan tgs)))))
 
-(defonce gitlatest (node/require "git-latest-semver-tag"))
-(println "gitlatest: " gitlatest)
-(defn doit []
-  (println "Doing it")
-  (js->clj (gitlatest (fn [err,tag] (println "tags: " tag)))))
 
 (defn -main []
-  (doit))
+  (async-macros/go
+    (get-tags)
+    (println "RESULTS: " (js->clj (.-all (async/<! res-chan))))))
 
-;; (def git (node/require "simple-git" "."))
-;; (println "git: " git)
+;;  (.tags git  (fn [err, tgs] (println "Yay; " (js->clj(.-all tgs))))))
 
-;; (defn ^:export mycallback [err, tgs]
-;;   (println "TAGS: " tgs))
-
-;; (defn tags [cb]
-;;    (def result (. git tags (fn [err, tgs] (println "Yay; " tgs) )))
-;;    (println "FOO: " result))
+;; (defonce gitlatest (node/require "git-latest-semver-tag"))
+;; (println "gitlatest: " gitlatest)
+;; (defn doit []
+;;   (println "Doing it")
+;;   (gitlatest (fn [err,tag] (println "err: " error " tags: " tag))))
 
 ;; (defn -main []
-;;   (tags mycallback))
-
-
-
+;;   (doit))
 
