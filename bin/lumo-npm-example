@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export LUMO_NPM_EXAMPLE_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+$LUMO_NPM_EXAMPLE_HOME/node_modules/lumo-cljs/bin/lumo -K -D andare:0.7.0 -c src -m lumo-npm-example.core
+

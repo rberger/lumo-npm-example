@@ -130,10 +130,24 @@ Simple-Git RESULTS:  [1.0.0 bar foo]
 Git-Latest RESULTS:  1.0.0
 ```
 
+The repo is also set up to be a deployable npm package itself and has an
+executable in `bin/lumo-npm-example`. The package.json includes lumo-cljs as a
+dependency so its loaded into `node_modules` when you did the `npm install`
+earlier. 
+
+This means you can also execute the program as:
+
+```shell
+bin/lumo-npm-example
+```
+
 ### Things to know to do this on your own
 
 If you use the repo you don't need to do the following since the `package.json`
-already exists but if you were doing this from scratch in a fresh new directory/repo you would have to:
+already exists 
+
+But if you want to know how to do something similar from scratch for your own
+project in a fresh new directory/repo you would have to:
 
 * Get the NPM libraries into the repo so they are able to be `require`d, you need to do the following:
   ```shell
@@ -149,6 +163,27 @@ already exists but if you were doing this from scratch in a fresh new directory/
   ```
   * The `--save` makes it install them locally to the current directory in
     `npm_modules` and updates the `package.json`
-    
+* To make your repo into a deployable npm package itself
+  * Include lumo-cljs in the package.json under `"dependencies"` as is done in this repo
+  * Have some kind of `bin/<executable>`
+    * Have an entry in package.json under `"scripts"` similar to how its done in this repo
+    * The example `bin/lumo-npm-example` shows how to set up the paths to the embedded `lumo-cljs`
+  * Make sure the `"name"` parameter in package.json is set to something appropriate for npmjs.com
+  * See
+    [Publishing npm packages](https://docs.npmjs.com/getting-started/publishing-npm-packages) for
+    more details on actually pushing the package to npmjs.com
 
+## Thanks To
+* Arne Brasseur and [LambdaIsland](https://lambdaisland.com) for
+  the
+  [Episodes](https://lambdaisland.com/episodes/building-cli-apps-with-lumo-part-1) on
+  using Lumo (and all the other great tutorials!) This is what got me started
+  and has all the info on making a lumo script into an npm package
+* António Monteiro for creating Lumo and his help on the [#lumo Clojurians Slack channel](https://clojurians.slack.com/messages/C322LFP1A/)
+* @hlolli for his extra help on the [#lumo Clojurians Slack channel](https://clojurians.slack.com/messages/C322LFP1A/)
 
+## Copyright & License
+
+Copyright  © Robert J. Berger
+
+Licensed under the [MIT License](https://opensource.org/licenses/MIT)

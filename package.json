@@ -1,15 +1,21 @@
 {
-  "name": "lumo-npm-example",
-  "version": "0.1.0",
-  "description": "Example How to Call Non-Trivial NPM Libraries in lumo / clojurescript",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Robert J. Berger",
-  "license": "ISC",
-  "dependencies": {
-    "git-latest-semver-tag": "^1.0.2",
-    "simple-git": "^1.75.0"
-  }
+    "name": "lumo-npm-example",
+    "version": "0.1.0",
+    "description": "Example How to Call Non-Trivial NPM Libraries in lumo / clojurescript",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lumo-npm-example": "bin/lumo-npm-example"
+    },
+    "author": "Robert J. Berger",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rberger/lumo-npm-example.git"
+    },
+    "dependencies": {
+        "git-latest-semver-tag": "^1.0.2",
+        "simple-git": "^1.75.0",
+        "lumo-cljs": "1.6.0"
+    }
 }
