@@ -4,7 +4,7 @@
 ;;
 ;; Its not used by lumo or the program
 ;;
-(defproject lumo-npm-example "0.1.1-SNAPSHOT"
+(defproject lumo-npm-example "0.1.3-SNAPSHOT"
   :description "Testing lumo with npm libraries simple-git and "
   :license {:name "The MIT License"
             :url "https://opensource.org/licenses/MIT"}

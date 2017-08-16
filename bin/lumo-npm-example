@@ -1,6 +1,24 @@
 #!/bin/bash
+# Path to Lumo Cache
+LUMO_CACHE_DIR=$HOME/.lumo_cache
+mkdir -p $LUMO_CACHE_DIR
 
-export LUMO_NPM_EXAMPLE_HOME="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+# Path to the called executable
+EXECUTABLE_PATH="${BASH_SOURCE[0]}"
 
-$LUMO_NPM_EXAMPLE_HOME/node_modules/lumo-cljs/bin/lumo -K -D andare:0.7.0 -c src -m lumo-npm-example.core
+if [[ $EXECUTABLE_PATH == \/* ]]; # If executable path starts with a slash.
+then
+    # Its installed npm instance is being called
+    NODE_MODULES=`npm root -g`
+    BASE=${NODE_MODULES}/lumo-npm-example
+    LIB=${BASE}/lib
+    SRC=${BASE}/src
+else
+    # Its being called from within its repo during development
+    BASE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+    NODE_MODULES=${BASE}/node_modules
+    LIB=${BASE}/lib
+    SRC=src
+fi
 
+$BASE/node_modules/lumo-cljs/bin/lumo -K -k $LUMO_CACHE_DIR -c "${SRC}":"$LIB"/andare-0.7.0.jar -m lumo-npm-example.core $@

@@ -1,12 +1,11 @@
-*jar
-/lib/
+/resources/public/js/compiled/**
 /classes/
 /out/
 /target/
+/resources/
 .lein-deps-sum
 .lein-repl-history
 .lein-plugins/
 .repl
 .nrepl-port
-node_modules
 .lumo_cache
