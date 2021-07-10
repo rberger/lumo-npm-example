@@ -1,3 +1,5 @@
+__NOTE: This is now too old and its just so much easier to use [shadow-cljs](https://github.com/thheller/shadow-cljs) the npm dependencies were also very old and not being updated. So Archiving__
+
 ## Example How to Call Non-Trivial NPM Libraries in  lumo / clojurescript
 
 Example of how to call a couple of NPM Libraries with different sets of function
